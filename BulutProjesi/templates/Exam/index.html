@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% for exams in exams %}
+        <div class="container col-lg-4 col-md-6 col-sm-12 float-left"style="padding-bottom: 20px">
+            <div class="card-deck " style="margin: 20px;margin-top: 30px;margin-bottom: 20px">
+
+              <div class="card border-success bg-transparent">
+                  <div class="card-header text-success" style="font-weight: bold">{{ exams.exam_course}}<br></div>
+                  <div class="card-header text-success" style="font-weight: bold">{{ exams.exam_title }}<br></div>
+                <div class="card-footer">
+                    <ul class="btn-group "  style="list-style-type: none;">
+
+                      <li>
+                     <a href="{{exams.get_start_url|urlencode}}"class="btn btn-outline-success" style="font-weight: bold">Başla</a>
+                      </li>
+
+                    </ul>
+                     <br>
+                     <br>
+                  <small class="text-muted"> Başlama Tarihi: {{ exams.start_date}}</small>
+                    <br>
+                  <small class="text-muted"> Deadline Tarihi  {{ exams.deadline_date}}</small>
+                    <br>
+                    <small class="text-muted"> Kalan Süre{{ exams.deadline_date|timeuntil }}</small>
+                </div>
+              </div>
+
+
+            </div>
+        </div>
+
+    {% endfor %}
+<footer class="footer">
+<div class="fixed-bottom"style="text-align: center" >
+        <div class="pagination" style="background-color: black;; border: 6px solid #4caf50; font-weight: bold;font-family: sans-serif;align-content: center" >
+    <span class="step-links" style="color: #4caf50;align-content: center">
+        {% if exams.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ exams.previous_page_number }}&q={{ request.Get.q }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ exams.number }} of {{ exams.paginator.num_pages }}.
+        </span>
+
+        {% if exams.has_next %}
+            <a href="?page={{ exams.next_page_number }}&q={{ request.Get.q }}">next</a>
+            <a href="?page={{ exams.paginator.num_pages }}&q={{ request.Get.q }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+</footer>
+
+{% endblock %}

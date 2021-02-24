@@ -1,0 +1,32 @@
+{% load static %}
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark " style="background-color: black">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+        <h5 style="margin: 20px; font-weight: bold; color: #5cb85c" >{{ user.username }} {{ user.isStudent }} {{ user.role }}</h5>
+      </li>
+      <li class="nav-item active">
+        <a href="{% url "exam:index" %}"class="btn btn-outline-success my-2 my-sm-0" style="margin: 10px; font-weight: bold">SINAVLARIM</a>
+      </li>
+      <li class="nav-item active">
+        <a href="{% url "exam:index2" %}"class="btn btn-outline-success my-2 my-sm-0" style="margin: 10px; font-weight: bold">Bu kullancı tarafından Oluşturulmuş Sınavlar</a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url "exam:create" %}"class="btn btn-outline-success my-2 my-sm-0" style="margin: 10px; font-weight: bold">SINAV OLUŞTUR</a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url "accounts:logout" %}"class="btn btn-outline-success my-2 my-sm-0"  style="margin: 10px; font-weight: bold" >LOGOUT</a>
+      </li>
+    </ul>
+    <form action={% url "exam:index" %} method="get" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" value="{{ request.GET.q }}" name="q" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" style="font-weight: bold" type="submit">Search</button>
+    </form>
+
+  </div>
+</nav>
+

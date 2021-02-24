@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="container col-lg-4 col-md-6 col-sm-12">
+            <div class="card-deck " style="margin-top: 30px">
+
+              <div class="card border-success bg-transparent" style="margin-bottom: 40px; padding: 20px">
+                  <div class="card-header text-success" style="font-weight: bold">{{ exam.exam_course }}<br></div>
+                  <div class="card-header text-success" style="font-weight: bold">{{ exam.exam_title }}<br></div>
+                <div class="card-footer">
+                    <br>
+                    <ul class="btn-group "  style="list-style-type: none;">
+                      <li>
+                         <a href="{{exam.get_update_url}}"class="btn btn-outline-success" style="font-weight: bold">UPDATE EXAM</a>
+                      </li>
+                      <li>
+                        <a href="{{exam.get_assign_question_url}}"class="btn btn-outline-success" style="font-weight: bold">ADD QUESTION</a>
+                      </li>
+                      <li>
+                        <a href="{{exam.get_assign_student_url}}"class="btn btn-outline-success"  style="font-weight: bold" >ASSIGN STUDENT</a>
+                      </li>
+                      <li>
+                        <a href="{{exam.get_delete_url}}"class="btn btn-outline-success"  style="font-weight: bold" >DELETE EXAM</a>
+                      </li>
+                    </ul>
+                  <small class="text-muted"> Başlama Tarihi  {{ exam.start_date}} {{ exam.startdate|timesince }} </small>
+                    <br>
+                  <small class="text-muted"> Deadline Tarihi  {{ exam.deadline_date}}</small>
+                    <br>
+                  <small class="text-muted"> Kalan Süre   {{ exam.deadline_date|timeuntil }}</small>
+                  <br>
+                  <small class="text-muted"> Gönderen   {{ exam.professor}}   </small>
+                </div>
+              </div>
+
+            <br><br><br>
+            <hr>
+
+
+            </div>
+
+
+            {% for question in exam.belonged_exam.all %}
+            <div class="card-deck " style="margin-top: 30px">
+            <div class="card border-warning bg-transparent">
+
+            <div class="card-header text-warning" style="font-weight: bold">{{forloop.counter}}) {{ question.question_content}}<br></div>
+             <div class="card-body text-warning ">
+                  <p class="card-text"  style="font-weight: bold">A) {{ question.option_1}}</p>
+                  <p class="card-text"  style="font-weight: bold">B) {{ question.option_2}}</p>
+                  <p class="card-text"  style="font-weight: bold">C) {{ question.option_3}}</p>
+                  <p class="card-text"  style="font-weight: bold">D) {{ question.option_4}}</p>
+                  <p class="card-text"  style="font-weight: bold">Doğru şık {{ question.right_option}}</p>
+             </div>
+             <div class="card-footer text-warning">
+
+
+             </div>
+            </div>
+            </div>
+            {% endfor %}
+
+
+
+
+
+        </div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block body %}
+    <div class="container"style="color: #1c7430; font-weight: bold; border-color: green;"  >
+    <form style="color: #5cb85c;" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <input class="btn btn-outline-success" type="submit" style="font-weight: bold" value="Oluştur">
+    </form>
+    </div>
+{% endblock %}
