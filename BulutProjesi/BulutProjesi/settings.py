@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'BulutProjesi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'utkuoz266',
+        'USER': 'utkuozdemir266',
+        'PASSWORD': 'f1r37g15F',
+        'HOST': 'utkuoz266.postgres.database.azure.com',
+        'PORT': '5432',
     }
 }
 
